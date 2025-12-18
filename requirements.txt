@@ -6,7 +6,3 @@ python-socketio==5.8.0
 python-engineio==4.5.1
 gevent>=23.9.0
 gevent-websocket==0.10.1
-flask
-gevent
-gunicorn
-python-socketio

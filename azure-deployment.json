@@ -1,0 +1,29 @@
+{
+  "deploymentName": "webshield-scanner",
+  "deploymentType": "AppService",
+  "runtime": "PYTHON|3.11",
+  "startupCommand": "gunicorn --bind=0.0.0.0:5000 --workers=2 --timeout=120 app:app",
+  "appSettings": {
+    "SCM_DO_BUILD_DURING_DEPLOYMENT": "true",
+    "WEBSITES_PORT": "5000",
+    "ENABLE_ORYX_BUILD": "true"
+  },
+  "recommendedRegions": [
+    "East US",
+    "West US",
+    "West Europe",
+    "Southeast Asia",
+    "Australia East",
+    "Canada Central"
+  ],
+  "notRecommended": [
+    "South India",
+    "Central India"
+  ],
+  "systemRequirements": {
+    "nmap": "Network scanning tool",
+    "nikto": "Web server vulnerability scanner",
+    "wapiti": "Web application scanner",
+    "ffuf": "Directory discovery tool"
+  }
+}

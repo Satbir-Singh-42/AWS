@@ -61,7 +61,8 @@ def prepare_scan_command(scan_type, target, scan_option=''):
             target_url = f"http://{validated_target}"
         
         # Wapiti command implementation with automatic protocol handling
-        return f"wapiti -u {target_url} -m all -f html -o /home/priyanshu/project/wapiti_report"
+        wapiti_output = os.path.join(log_dir, 'wapiti_report')
+        return f"wapiti -u {target_url} -m all -f html -o {wapiti_output}"
     
     elif scan_type == 'hidi':
         # Create results directory if it doesn't exist
@@ -79,7 +80,8 @@ def prepare_scan_command(scan_type, target, scan_option=''):
         # Ffuf command for hidden directory discovery
         # Using common.txt wordlist and filtering out 404 responses
         # Output to HTML format in the results directory
-        return f"ffuf -u {target_url}/FUZZ -w /usr/share/wordlists/dirb/common.txt -fc 404 -o /home/priyanshu/project/dirResult.html -of html"
+        ffuf_output = os.path.join(results_dir, 'dirResult.html')
+        return f"ffuf -u {target_url}/FUZZ -w /usr/share/wordlists/dirb/common.txt -fc 404 -o {ffuf_output} -of html"
 
     else:
         raise ScanConfigError(f"Invalid scan type: {scan_type}")
@@ -132,9 +134,9 @@ def run_scan_process(cmd, scan_id, output_file, scan_results):
                 
             # Add tool-specific messages
             if 'wapiti' in output_file.lower():
-                scan_results[scan_id]['output'].append("\n\nWapiti scan completed. Check /home/priyanshu/project/wapiti_report for full report.")
+                scan_results[scan_id]['output'].append("\n\nWapiti scan completed. Report saved.")
             elif 'hidi' in output_file.lower() or 'ffuf' in output_file.lower():
-                scan_results[scan_id]['output'].append("\n\nHidi scan completed. Check /home/priyanshu/project/dirResult.html for full report.")
+                scan_results[scan_id]['output'].append("\n\nHidi scan completed. Report saved.")
                 
             return
         
