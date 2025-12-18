@@ -1,0 +1,16 @@
+{
+  "name": "azure-website",
+  "version": "1.0.0",
+  "description": "Website to deploy to Azure",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["azure", "website"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
